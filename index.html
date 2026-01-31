@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b0d10" />
+  <title>Rapor</title>
+
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icon-180.png" />
+  <link rel="icon" href="icon-192.png" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <h1>Rapor</h1>
+      <div class="badge" id="count">Hazır.</div>
+    </div>
+
+    <div class="search">
+      <input id="q" type="text" inputmode="search" autocomplete="off" autocapitalize="characters"
+             placeholder="Kod / açıklama (örn: DK.21161-1 veya 29547)" />
+      <button id="micBtn" class="iconbtn" type="button" aria-label="Sesle ara">🎤</button>
+    </div>
+
+    <div class="smallrow">
+      <div class="pill">Sessiz</div>
+      <div class="pill">Offline</div>
+      <div class="pill">Hızlı arama</div>
+    </div>
+
+    <div id="results"></div>
+
+    <div class="tools">
+      <div class="row2">
+        <input id="file" type="file" accept=".csv" />
+        <button id="importBtn" class="btn primary" type="button">CSV içe aktar</button>
+        <button id="resetBtn" class="btn" type="button">Varsayılan veriye dön</button>
+      </div>
+      <div class="status" id="status"></div>
+      <div class="footer-note">
+        Ses butonu her cihazda çalışmayabilir. Çalışmazsa sorun değil, yazıp devam et.<br/>
+        Not: iPhone’da Excel (.xlsx) tarayıcıdan direkt okunması zor. En pratik yol: Excel’i <b>CSV</b> olarak dışa aktar.
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="card">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2 id="cardKod">-</h2>
+        <button class="close" id="cardClose" type="button" aria-label="Kapat">✕</button>
+      </div>
+
+      <div class="field">
+        <div class="label">Açıklama</div>
+        <div class="value" id="cardAcik">-</div>
+      </div>
+
+      <div class="field">
+        <div class="label">Stok</div>
+        <div class="value big" id="cardStok">-</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("./sw.js");
+    }
+  </script>
+</body>
+</html>
